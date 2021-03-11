@@ -1,3 +1,4 @@
+
 <?php
 $con = mysqli_connect('localhost','root','');
 if($con)
@@ -9,12 +10,13 @@ else
 	die("error".mysql_error());
 }
 
-$b=$_POST['bidphp'];
+$semid = $_POST['semid'];
+$branchid = $_POST['branchid'];
 
-$query1 = "select * from subname9 where bid88=3";
+$query1 = "select * from subname9 where bid88='$branchid' and semid='$semid' ";
 $result1 = mysqli_query($con,$query1);
 ?>
-<option selected="true" disabled="disabled">-- Select Branch --</option>
+
 								<?php
 										while($row = mysqli_fetch_array($result1))
 										{
@@ -23,5 +25,3 @@ $result1 = mysqli_query($con,$query1);
 										<?php
 										}									
 									?>
-
-

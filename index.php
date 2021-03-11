@@ -1,3 +1,4 @@
+
 <?php
 $con = mysqli_connect('localhost','root','');
 if($con)
@@ -21,6 +22,13 @@ else
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
+		<style type="text/css">
+			.tooltip-inner{
+				font-size:17px;
+				padding:4px;
+			}
+		</style>
 	</head>
 	<body>
 
@@ -67,8 +75,8 @@ else
 						<div id="frmdv" style="width: 40%; margin: auto;">
 							<form id="frm" method="post" action="getbook.html">
 								<label><h2> Select your Branch </h2></label>
-								<select name="branch" onchange="passval()">
-									<option selected="true" disabled="disabled">-- Select Branch --</option>
+								<select style="display:inline" name="branch" id="branch" onchange="enablesem()">
+									<option selected="true" value="-1" >-- Select Branch --</option>
 									<?php
 										$query1 = "select * from branch84";
 										$result1 = mysqli_query($con,$query1);
@@ -79,24 +87,28 @@ else
 										<?php
 										}									
 									?>
+									
 								</select>
+								<a href="#" data-toggle="tooltip" data-placement="right" title="Select Branch First"></a>
 								<br>
 								<label><h2> Select your Semester </h2></label>
-								<select name="branch">
-									<option>-- Select Sem --</option>
-									<option>first</option>
-									<option>Second</option>
-									<option>Third</option>
-									<option>Fourth</option>
-									<option>Fifth</option>
-									<option>Sixth</option>
-									<option>Seventh</option>
-									<option>Eighth</option>
+								<select name="semster" id="semster" onclick="checkbranch()" onchange="passval(this.value)" >
+									<option id="test1" value="-1" selected="true" disabled>-- Select Branch --</option>
+									<?php
+										$query1 = "select * from sem8";
+										$result1 = mysqli_query($con,$query1);
+										while($row = mysqli_fetch_array($result1))
+										{
+										?>
+											<option disabled value="<?php echo $row['sid8']; ?>"><?php echo $row['semstername88']; ?></option>
+										<?php
+										}									
+									?>
 								</select>
 								<br>
 								<label><h2> Select your Subject </h2></label>
 								<select name="subname" id="subname">
-									
+									<option selected="true" disabled="disabled">-- Select subject --</option>	
 								</select>
 								<br>
 								<input type="submit" value="Get it"> </input>
@@ -171,12 +183,35 @@ else
 
 		<!-- Scripts -->
 			<script type="text/javascript">
-				function passval()
+				var data1 = document.getElementById("subname").innerHTML;
+				function passval(val)
 				{
-
-					$.post('new.php',{
-				bidphp: "mit"
-			});
+					var bid=document.getElementById("branch").value;
+					
+					$.ajax({
+						url:'passvalue.php',
+						type: 'POST',
+						data:{semid:val,branchid:bid},
+						success: function(result){
+							d=data1+result;
+							$("#subname").html(d);
+						}
+					});
+				}
+				function enablesem(){
+					if(!($('#semster').find(":selected").val() == -1)){
+						$('#semster').find(":selected").removeAttr("selected");
+					}
+					$('#semster').children().removeAttr("disabled");
+				}
+				function checkbranch(){
+					if($('#branch').find(":selected").val() == -1){
+						//console.log("Select breanch first");
+						$('[data-toggle="tooltip"]').tooltip('show');
+						$("#semster").on('focusout',function(){
+							$('[data-toggle="tooltip"]').tooltip('hide');
+						});
+					}
 				}
 			</script>
 			<script src="assets/js/jquery.min.js"></script>
@@ -184,6 +219,8 @@ else
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <?php
 mysqli_close($con);
 ?>
