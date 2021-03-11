@@ -1,3 +1,4 @@
+
 <?php
 $con = mysqli_connect('localhost','root','');
 if($con)
@@ -24,5 +25,3 @@ $result1 = mysqli_query($con,$query1);
 										<?php
 										}									
 									?>
-
-

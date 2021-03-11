@@ -1,3 +1,4 @@
+
 /*
 	Intensify by TEMPLATED
 	templated.co @templatedco
@@ -61,5 +62,4 @@
 				});
 
 	});
-
 })(jQuery);
