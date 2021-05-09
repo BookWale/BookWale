@@ -37,7 +37,7 @@ else
 				<!--<nav class="left">
 					<a href="#menu"><span>Menu</span></a>
 				</nav> -->
-				<a href="index.html" class="logo">Book Wale</a>
+				<a href="index.php" class="logo">Book Wale</a>
 			
 			</header>
 
@@ -55,7 +55,7 @@ else
 
 		<!-- Banner -->
 			<section id="banner">
-				<div class="content">
+				<div class="content" style="margin-top:30px">
 					<h1>Carry your books with Book wale</h1>
 					<p style="color:black;">
 						Its very difficult to carry each and every book with you. Still its imposible to get these books any where any time.<br>
@@ -73,9 +73,9 @@ else
 		<!-- One -->
 			<section id="one" class="wrapper" style="margin: 50px;">
 						<div id="frmdv" style="width: 40%; margin: auto;">
-							<form id="frm" method="post" action="getbook.html">
+							<form id="frm" method="get" action="showbook.php">
 								<label><h2> Select your Branch </h2></label>
-								<select style="display:inline" name="branch" id="branch" onchange="enablesem()">
+								<select style="display:inline" name="branch_id" id="branch" onchange="enablesem()">
 									<option selected="true" value="-1" >-- Select Branch --</option>
 									<?php
 										$query1 = "select * from branch84";
@@ -83,7 +83,7 @@ else
 										while($row = mysqli_fetch_array($result1))
 										{
 										?>
-											<option value="<?php echo $row['bid88']; ?>"><?php echo $row['bname83']; ?></option>
+											<option name="branch_id" value="<?php echo $row['bid88']; ?>"><?php echo $row['bname83']; ?></option>
 										<?php
 										}									
 									?>
@@ -92,7 +92,7 @@ else
 								<a href="#" data-toggle="tooltip" data-placement="right" title="Select Branch First"></a>
 								<br>
 								<label><h2> Select your Semester </h2></label>
-								<select name="semster" id="semster" onclick="checkbranch()" onchange="passval(this.value)" >
+								<select name="sem_id" id="semster" onclick="checkbranch()" onchange="passval(this.value)" >
 									<option id="test1" value="-1" selected="true" disabled>-- Select Branch --</option>
 									<?php
 										$query1 = "select * from sem8";
@@ -100,14 +100,14 @@ else
 										while($row = mysqli_fetch_array($result1))
 										{
 										?>
-											<option disabled value="<?php echo $row['sid8']; ?>"><?php echo $row['semstername88']; ?></option>
+											<option disabled name="sem_id" value="<?php echo $row['sid8']; ?>"><?php echo $row['semstername88']; ?></option>
 										<?php
 										}									
 									?>
 								</select>
 								<br>
 								<label><h2> Select your Subject </h2></label>
-								<select name="subname" id="subname">
+								<select name="subject_id" id="subname">
 									<option selected="true" disabled="disabled">-- Select subject --</option>	
 								</select>
 								<br>
