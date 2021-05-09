@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2021 at 05:46 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: May 09, 2021 at 04:10 PM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,12 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `book`
+--
+
+CREATE TABLE `book` (
+  `book_id` int(20) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `author` varchar(100) NOT NULL,
+  `description` varchar(100) NOT NULL,
+  `branch_id` int(20) NOT NULL,
+  `sem_id` int(20) NOT NULL,
+  `subject_id` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`book_id`, `name`, `author`, `description`, `branch_id`, `sem_id`, `subject_id`) VALUES
+(1, 'Cryptography and Network Security: Principles and Practice', 'William Stallings', 'CNS Book', 1, 6, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `branch84`
 --
 
 CREATE TABLE `branch84` (
   `bid88` int(10) NOT NULL,
-  `bname83` varchar(20) NOT NULL
+  `bname83` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -38,7 +60,7 @@ CREATE TABLE `branch84` (
 --
 
 INSERT INTO `branch84` (`bid88`, `bname83`) VALUES
-(1, 'informationtechnolog'),
+(1, 'Information Technology'),
 (2, 'computer'),
 (3, 'mechanical'),
 (4, 'chemical'),
@@ -73,33 +95,12 @@ INSERT INTO `sem8` (`sid8`, `semstername88`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub84`
---
-
-CREATE TABLE `sub84` (
-  `sname83` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `subject9`
---
-
-CREATE TABLE `subject9` (
-  `sbid99` int(5) NOT NULL,
-  `subname9` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `subname9`
 --
 
 CREATE TABLE `subname9` (
   `sbid99` int(5) NOT NULL,
-  `subname9` varchar(15) NOT NULL,
+  `subname9` varchar(100) NOT NULL,
   `bid88` int(5) NOT NULL,
   `semid` int(5) NOT NULL COMMENT 'sem id'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -109,12 +110,12 @@ CREATE TABLE `subname9` (
 --
 
 INSERT INTO `subname9` (`sbid99`, `subname9`, `bid88`, `semid`) VALUES
-(1, 'CNS (Cryptograp', 1, 6),
-(2, 'AWP (Advance We', 1, 6),
-(3, 'AI (Artificial ', 1, 6),
+(1, 'CNS (Cryptography and Network security)', 1, 6),
+(2, 'AWP (Advance Web Programming)', 1, 6),
+(3, 'AI (Artificial Intelligence)', 1, 6),
 (4, 'IPDC', 1, 6),
-(5, 'MAD (Mobile App', 1, 6),
-(6, 'SE (Software En', 1, 6),
+(5, 'MAD (Mobile Application Development)', 1, 6),
+(6, 'SE (Software Engineering)', 1, 6),
 (7, 'me sub 1 sem 6', 3, 6),
 (8, 'me sub 2 sem 6', 3, 6),
 (9, 'me sub 3 sem 6', 3, 6),
@@ -132,6 +133,12 @@ INSERT INTO `subname9` (`sbid99`, `subname9`, `bid88`, `semid`) VALUES
 --
 
 --
+-- Indexes for table `book`
+--
+ALTER TABLE `book`
+  ADD PRIMARY KEY (`book_id`);
+
+--
 -- Indexes for table `branch84`
 --
 ALTER TABLE `branch84`
@@ -144,12 +151,6 @@ ALTER TABLE `sem8`
   ADD PRIMARY KEY (`sid8`);
 
 --
--- Indexes for table `subject9`
---
-ALTER TABLE `subject9`
-  ADD PRIMARY KEY (`sbid99`);
-
---
 -- Indexes for table `subname9`
 --
 ALTER TABLE `subname9`
@@ -158,6 +159,12 @@ ALTER TABLE `subname9`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `book`
+--
+ALTER TABLE `book`
+  MODIFY `book_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `branch84`
@@ -170,12 +177,6 @@ ALTER TABLE `branch84`
 --
 ALTER TABLE `sem8`
   MODIFY `sid8` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `subject9`
---
-ALTER TABLE `subject9`
-  MODIFY `sbid99` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `subname9`
