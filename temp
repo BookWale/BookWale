@@ -1,1 +1,1 @@
-https://localhost/Book%20Wale/showbook.php?branch_id=1&subject_id=1&sem_id=1"/images/".$row['book_id'].".jpg"
+https://localhost/Book%20Wale/showbook.php?branch_id=1&subject_id=1&sem_id=1

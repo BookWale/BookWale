@@ -34,12 +34,22 @@ else
 
 		<!-- Header -->
 			<header id="header">
-				<!--<nav class="left">
+				<nav class="left">
 					<a href="#menu"><span>Menu</span></a>
-				</nav> -->
+				</nav>
 				<a href="index.php" class="logo">Book Wale</a>
 			
 			</header>
+
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.php">Home</a></li>
+					<li><a href="admin.php">Admin Login</a></li>
+				</ul>
+				<ul class="actions vertical">
+					<li><a href="#" class="button fit">Login</a></li>
+				</ul>
+			</nav>
 
 		<!-- Menu 
 			<nav id="menu">
@@ -118,7 +128,7 @@ else
 
 
 		<!-- Two -->
-			<section id="two" class="wrapper style1 special">
+			<!-- <section id="two" class="wrapper style1 special">
 				<div class="inner">
 					<h2>Feugiat lorem</h2>
 					<figure>
@@ -131,10 +141,10 @@ else
 					    </footer>
 					</figure>
 				</div>
-			</section>
+			</section> -->
 
 		<!-- Three -->
-			<section id="three" class="wrapper">
+			<!-- <section id="three" class="wrapper">
 				<div class="inner flex flex-3">
 					<div class="flex-item box">
 						<div class="image fit">
@@ -164,7 +174,7 @@ else
 						</div>
 					</div>
 				</div>
-			</section>
+			</section> -->
 
 		<!-- Footer -->
 			<footer id="footer">
